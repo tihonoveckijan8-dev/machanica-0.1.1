@@ -1,0 +1,283 @@
+/* --- Variables & Reset --- */
+:root {
+    /* Цветовая палитра "Premium Academic" */
+    --bg-color: #f2f5f9;
+    --surface-color: #ffffff;
+    --primary-color: #3b82f6; /* Modern Blue */
+    --primary-dark: #1d4ed8;
+    --text-main: #1e293b; /* Slate 800 */
+    --text-secondary: #64748b; /* Slate 500 */
+    --border-color: #e2e8f0;
+    --accent-bg: #eff6ff;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+    /* Layout */
+    --container-width: 1200px;
+    --header-height: auto;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Layout Structure --- */
+.main-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header --- */
+.app-header {
+    margin-bottom: 24px;
+    padding: 0 12px;
+}
+
+.header-content h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.meta-info {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 4px 12px;
+    border-radius: 99px;
+    font-weight: 600;
+}
+
+/* --- Main Tabs (Scrollable) --- */
+.tabs-scroll-container {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-color); /* Matches body to hide scroll behind */
+    padding: 10px 0;
+    margin-bottom: 20px;
+    /* Fade mask on sides implies scrolling */
+    mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent);
+}
+
+.tabs-wrapper {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 4px 12px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE */
+    scroll-behavior: smooth;
+}
+
+.tabs-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.tab-button {
+    flex: 0 0 auto;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+}
+
+.tab-button:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+}
+
+.tab-button.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* --- Content Area --- */
+.content-area {
+    background: var(--surface-color);
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    padding: 32px;
+    min-height: 400px;
+    position: relative;
+    overflow: hidden; /* For rounded corners */
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* --- Sub Tabs --- */
+.subtabs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.subtab-button {
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #f1f5f9;
+}
+
+.subtab-button:hover {
+    background-color: #e2e8f0;
+    color: var(--text-main);
+}
+
+.subtab-button.active {
+    background-color: var(--text-main);
+    color: white;
+}
+
+/* --- Typography in Content --- */
+.subtab-content {
+    display: none;
+}
+
+.subtab-content.active {
+    display: block;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #111827;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+p {
+    margin-bottom: 1.2em;
+    font-size: 1.05rem;
+    color: #374151;
+}
+
+strong {
+    color: #000;
+    font-weight: 600;
+}
+
+.sivukhin-ref {
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--border-color);
+    font-size: 0.85rem;
+    color: #94a3b8;
+    text-align: right;
+    font-style: italic;
+}
+
+/* --- Animation --- */
+.fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Footer --- */
+.app-footer {
+    margin-top: auto;
+    padding: 40px 0 20px;
+    text-align: center;
+}
+
+.footer-note {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* --- Mobile Adaptive --- */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 12px;
+    }
+    
+    .header-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .content-area {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    /* On mobile, subtabs can also scroll if many */
+    .subtabs-container {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 12px; /* Space for scrollbar if needed, though hidden usually */
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .subtab-button {
+        white-space: nowrap;
+        flex: 0 0 auto;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+    
+    p {
+        font-size: 1rem;
+    }
+}
